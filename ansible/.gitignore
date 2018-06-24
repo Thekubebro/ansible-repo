@@ -1,0 +1,11 @@
+.DS_Store
+Softwares
+*.retry
+.vagrant
+credntials.tf
+.tfstate.*
+inventory/adithyakhamithkar
+*.log
+scripts
+run-role.yml
+ubuntu-desktop/roles/enemy-territory
