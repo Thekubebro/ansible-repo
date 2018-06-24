@@ -1,12 +1,3 @@
-# https://www.ansible.com/
-#
-# docker run --rm \
-# 	-it \
-# 	-v ${PWD}/hosts:/etc/ansible/hosts \
-# 	-v ${PWD}/ansible.cfg:/etc/ansible/ansible.cfg \
-# 	-v ${HOME}/.ssh:/root/.ssh:ro \
-# 	ansible all -m ping
-#
 FROM alpine:latest
 LABEL maintainer "Coleman Word <colemanword@gmail.com>"
 
@@ -25,13 +16,13 @@ RUN builddeps=' \
 	py-yaml \
 	py-jinja2 \
 	py-httplib2 \
+	git \
 	$builddeps \
 	&& pip install --upgrade pip \
 	&& pip install \
 		ansible \
 		six \
 	&& apk del --purge $builddeps
-
-COPY --chown=1 files* /somedir/
+RUN git clone https://github.com/Thekubebro/ansible-repo.git && cd ansible-repo
 
 ENTRYPOINT [ "ansible-playbook" ]
