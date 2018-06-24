@@ -19,6 +19,7 @@ RUN builddeps=' \
 		gcc \
 		' \
 	&& apk --no-cache add \
+        git \
 	ca-certificates \
 	python \
 	py-paramiko \
@@ -32,6 +33,6 @@ RUN builddeps=' \
 		six \
 	&& apk del --purge $builddeps
 
-COPY --chown=1 files* /somedir/
+RUN git clone https://github.com/Thekubebro/ansible-docker.git && cd ansible-docker
 
 ENTRYPOINT [ "ansible-playbook" ]
